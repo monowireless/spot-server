@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>TWELITE SPOT Server | CUE Viewer</title>
+    <meta name="description" content="Viewer for TWELITE CUE (App_CUE)" />
+
+    <link rel="icon" href="./images/favicon.ico" />
+    <link rel="stylesheet" type="text/css" href="./css/flexboxgrid.min.css" >
+    <link rel="stylesheet" type="text/css" href="./css/style.css">
+
+    <script src="./js/chart.min.js" defer></script>
+    <script src="./js/luxon.min.js" defer></script>
+    <script src="./js/chartjs-adapter-luxon.js" defer></script>
+    <script src="./js/chartjs-plugin-streaming.min.js" defer></script>
+    <script src="./js/cue-viewer.js" defer></script>
+
+  </head>
+  <body>
+    <div class="row start-xs top-xs">
+
+      <div class="col-xs-6 col-sm-6 col-md-5 col-lg-4">
+        <div class="neumorphic inset dense row center-xs middle-xs">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 npr npl">
+            <img src="./images/logo-lands.svg" class="logo" />
+          </div>
+        </div>
+      </div>
+
+      <div class="col-xs-6 col-sm-6 col-md-7 col-lg-8">
+        <div class="neumorphic inset dense row center-xs middle-xs">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 nwp npr npl">
+            <span class="medium bold">TWELITE SPOT</span>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 nwp npr npl">
+            <span class="small bold">CUE Viewer</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="neumorphic inset auto row center-xs middle-xs">
+          <div class="col-xs-12 nwp npr npl">
+            <span class="medium bold">
+              Timeline
+            </span>
+          </div>
+          <div class="col-xs-12 npr npl">
+            <canvas id="accel-chart" class="chart"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
+        <div class="neumorphic inset row center-xs middle-xs">
+          <div class="col-xs-12 nwp npr npl">
+            <span class="medium bold">
+              Acceleration
+            </span>
+          </div>
+          <div class="col-xs-4 nwp npr npl">
+            <span class="medium normal">X</span>
+          </div>
+          <div class="col-xs-4 nwp npr npl">
+            <span class="medium normal">Y</span>
+          </div>
+          <div class="col-xs-4 nwp npr npl">
+            <span class="medium normal">Z</span>
+          </div>
+          <div class="col-xs-4 nwp npr npl">
+            <code class="medium"
+                  id="latest-accel-x">±--.--</code>
+            <code class="small">G</code>
+          </div>
+          <div class="col-xs-4 nwp npr npl">
+            <code class="medium"
+                  id="latest-accel-y">±--.--</code>
+            <code class="small">G</code>
+          </div>
+          <div class="col-xs-4 nwp npr npl">
+            <code class="medium"
+                  id="latest-accel-z">±--.--</code>
+            <code class="small">G</code>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+        <div class="neumorphic inset row center-xs middle-xs">
+          <div class="col-xs-12 nwp npr npl">
+            <span class="medium bold">
+              Status
+            </span>
+          </div>
+          <div class="col-xs-12 npr npl">
+            <span class="plain">
+              <img class="icon"
+                   id="latest-status"
+                   src="./images/vanilla.svg" />
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+        <div class="neumorphic inset row center-xs middle-xs">
+          <div class="col-xs-12 nwp npr npl">
+            <span class="medium bold">
+              Magnet
+            </span>
+          </div>
+          <div class="col-xs-12">
+            <span class="medium">🧲</span>
+          </div>
+          <div class="col-xs-12 nwp npr npl">
+            <code class="medium"
+                  id="latest-magnet">---</code>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+        <div class="neumorphic inset row center-xs middle-xs">
+          <div class="col-xs-12 nwp npr npl">
+            <span class="medium bold">
+              Power
+            </span>
+          </div>
+          <div class="col-xs-12">
+            <span class="medium"
+                  id="latest-vcc-icon">🔋</span>
+          </div>
+          <div class="col-xs-12 nwp npr npl">
+            <code class="medium"
+                  id="latest-vcc-data">-.--</code>
+            <code class="small">V</code>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+        <div class="neumorphic inset row center-xs middle-xs">
+          <div class="col-xs-12 nwp npr npl">
+            <span class="medium bold">
+              LQI
+            </span>
+          </div>
+          <div class="col-xs-12">
+            <span class="medium">📶</span>
+          </div>
+          <div class="col-xs-12 nwp npr npl">
+            <code class="medium"
+                  id="latest-lqi">---</code>
+            <code class="small"><sub>/255</sub></code>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+        <div class="row center-xs middle-xs neumorphic inset">
+          <div class="col-xs-12 nwp npr npl">
+            <span class="medium bold">
+              Packets
+            </span>
+          </div>
+          <div class="col-xs-12">
+            <span class="medium">📦</span>
+          </div>
+          <div class="col-xs-12 nwp npr npl">
+            <code class="medium"
+                  id="latest-seq">-----</code>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+        <div class="row center-xs middle-xs neumorphic inset">
+          <div class="col-xs-12 nwp npr npl">
+            <span class="medium bold">
+              ID
+            </span>
+          </div>
+          <div class="col-xs-12">
+            <span class="medium">🏷️</span>
+          </div>
+          <div class="col-xs-12 nwp npr npl">
+            <code class="medium"
+                  id="latest-lid">----</code>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </body>
+</html>
+
+<!--
+    Copyright (C) 2023 Mono Wireless Inc. All Rights Reserved.
+    Released under MW-OSSLA-1J,1E (MONO WIRELESS OPEN SOURCE SOFTWARE LICENSE AGREEMENT).
+  -->

@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>TWELITE SPOT Server | Signal Viewer</title>
+    <meta name="description" content="Viewer for App_Twelite" />
+
+    <link rel="icon" href="./images/favicon.ico" />
+    <link rel="stylesheet" type="text/css" href="./css/flexboxgrid.min.css" >
+    <link rel="stylesheet" type="text/css" href="./css/style.css">
+
+    <script src="./js/signal-viewer.js" defer></script>
+
+  </head>
+  <body>
+    <div class="row start-xs top-xs">
+
+      <div class="col-xs-6 col-sm-6 col-md-5 col-lg-4">
+        <div class="neumorphic inset dense row center-xs middle-xs">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 npr npl">
+            <img src="./images/logo-lands.svg" class="logo" />
+          </div>
+        </div>
+      </div>
+
+      <div class="col-xs-6 col-sm-6 col-md-7 col-lg-8">
+        <div class="neumorphic inset dense row center-xs middle-xs">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 nwp npr npl">
+            <span class="medium bold">TWELITE SPOT</span>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 nwp npr npl">
+            <span class="small bold">Signal Viewer</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
+        <div class="neumorphic inset row center-xs middle-xs">
+          <div class="col-xs-12 nwp npr npl">
+            <span class="medium bold">
+              Digital
+            </span>
+          </div>
+          <div class="col-xs-3 nwp npr npl">
+            <span class="medium normal">1</span>
+          </div>
+          <div class="col-xs-3 nwp npr npl">
+            <span class="medium normal">2</span>
+          </div>
+          <div class="col-xs-3 nwp npr npl">
+            <span class="medium normal">3</span>
+          </div>
+          <div class="col-xs-3 nwp npr npl">
+            <span class="medium normal">4</span>
+          </div>
+          <div class="col-xs-3">
+            <span class="medium"
+                  id="latest-di1-signal">⚪️</span>
+          </div>
+          <div class="col-xs-3">
+            <span class="medium"
+                  id="latest-di2-signal">⚪️</span>
+          </div>
+          <div class="col-xs-3">
+            <span class="medium"
+                  id="latest-di3-signal">⚪️</span>
+          </div>
+          <div class="col-xs-3">
+            <span class="medium"
+                  id="latest-di4-signal">⚪️</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
+        <div class="neumorphic inset row center-xs middle-xs">
+          <div class="col-xs-12 nwp npr npl">
+            <span class="medium bold">
+              Analog
+            </span>
+          </div>
+          <div class="col-xs-3 nwp npr npl">
+            <span class="medium normal">1</span>
+          </div>
+          <div class="col-xs-3 nwp npr npl">
+            <span class="medium normal">2</span>
+          </div>
+          <div class="col-xs-3 nwp npr npl">
+            <span class="medium normal">3</span>
+          </div>
+          <div class="col-xs-3 nwp npr npl">
+            <span class="medium normal">4</span>
+          </div>
+          <div class="col-xs-3 nwp npr npl">
+            <code class="medium"
+                  id="latest-ai1-signal">-.--</code>
+            <code class="small">V</code>
+          </div>
+          <div class="col-xs-3 nwp npr npl">
+            <code class="medium"
+                  id="latest-ai2-signal">-.--</code>
+            <code class="small">V</code>
+          </div>
+          <div class="col-xs-3 nwp npr npl">
+            <code class="medium"
+                  id="latest-ai3-signal">-.--</code>
+            <code class="small">V</code>
+          </div>
+          <div class="col-xs-3 nwp npr npl">
+            <code class="medium"
+                  id="latest-ai4-signal">-.--</code>
+            <code class="small">V</code>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+        <div class="neumorphic inset row center-xs middle-xs">
+          <div class="col-xs-12 nwp npr npl">
+            <span class="medium bold">
+              Power
+            </span>
+          </div>
+          <div class="col-xs-12">
+            <span class="medium"
+                  id="latest-vcc-icon">🔋</span>
+          </div>
+          <div class="col-xs-12 nwp npr npl">
+            <code class="medium"
+                  id="latest-vcc-data">-.--</code>
+            <code class="small">V</code>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+        <div class="neumorphic inset row center-xs middle-xs">
+          <div class="col-xs-12 nwp npr npl">
+            <span class="medium bold">
+              LQI
+            </span>
+          </div>
+          <div class="col-xs-12">
+            <span class="medium">📶</span>
+          </div>
+          <div class="col-xs-12 nwp npr npl">
+            <code class="medium"
+                  id="latest-lqi">---</code>
+            <code class="small"><sub>/255</sub></code>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+        <div class="neumorphic inset row center-xs middle-xs">
+          <div class="col-xs-12 nwp npr npl">
+            <span class="medium bold">
+              Timestamp
+            </span>
+          </div>
+          <div class="col-xs-12">
+            <span class="medium">🕰️</span>
+          </div>
+          <div class="col-xs-12 nwp npr npl">
+            <code class="medium"
+                  id="latest-timestamp">----.-</code>
+            <code class="small">s</code>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+        <div class="neumorphic inset row center-xs middle-xs">
+          <div class="col-xs-12 nwp npr npl">
+            <span class="medium bold">
+              ID
+            </span>
+          </div>
+          <div class="col-xs-12">
+            <span class="medium">🏷️</span>
+          </div>
+          <div class="col-xs-12 nwp npr npl">
+            <code class="medium"
+                  id="latest-lid">----</code>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </body>
+</html>
+
+<!--
+    Copyright (C) 2023 Mono Wireless Inc. All Rights Reserved.
+    Released under MW-OSSLA-1J,1E (MONO WIRELESS OPEN SOURCE SOFTWARE LICENSE AGREEMENT).
+  -->

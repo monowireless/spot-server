@@ -1,0 +1,240 @@
+/* html standard tags and its classes */
+:root {
+    --std-color-twelite: #E4007F;
+    --std-color-winered: #751B43;
+    --std-color-burbundy: #2B0319;
+    --std-color-green: #2F9693;
+    --std-color-orange: #DC9E31;
+    --std-color-purple: #9557D9;
+    --std-color-gray: #585358;
+    --label-color-red: #F45855;
+    --label-color-yellow: #F2F556;
+    --label-color-green: #56F558;
+}
+
+html {
+    font-size: min(2.25vh, 4.0vw, 25px);
+}
+
+body {
+    font-family: "Proxima Nova", "Avenir Next", "Montserrat",
+                 "Source Sans Pro", "Helvetica Neue", "Noto Sans", "Roboto", "Corbel",
+                 "Verdana", sans-serif;
+    /* font-family: "Raleway", */
+    /*              "Proxima Nova", "Avenir Next", "Montserrat", */
+    /*              "Source Sans Pro", "Helvetica Neue", "Noto Sans", "Roboto", "Corbel", */
+    /*              "Verdana", sans-serif; */
+    font-variant-numeric: lining-nums;
+    background: var(--std-color-winered);
+    color: #FFFFFF;
+    margin: 0;
+    padding: 1.0rem 2.0rem;
+}
+
+*:focus {
+    outline: none;
+}
+
+div {
+    -webkit-touch-callout: none;
+    -webkit-user-drag: none;
+    -webkit-tap-highlight-color: transparent;
+    outline: none;
+}
+
+div.npr {
+    padding-right: 0 !important;
+}
+
+div.npl {
+    padding-left: 0 !important;
+}
+
+div.nwp {
+    white-space: nowrap !important;
+}
+
+div.tar {
+    text-align: right !important;
+}
+
+div.tal {
+    text-align: left !important;
+}
+
+a.makediv {
+    display: block;
+    text-decoration: none !important;
+}
+
+a.makediv, a.makediv:hover, a.makediv:visited {
+    color: inherit;
+}
+
+button.makediv {
+    border: none;
+    outline: none;
+    font: inherit;
+    color: inherit;
+    background: none
+}
+
+a, button {
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    outline: none;
+}
+
+span {
+    white-space: nowrap;
+    -webkit-user-select: inherit;
+    -ms-user-select: inherit;
+    user-select: inherit;
+}
+
+span.larger, code.larger {
+    font-size: 1.2rem;
+}
+
+span.large, code.large {
+    font-size: 1.1rem;
+}
+
+span.medium, code.medium {
+    font-size: 1.0rem;
+}
+
+span.small, code.small {
+    font-size: 0.9rem;
+}
+
+span.smaller, code.smaller {
+    font-size: 0.8rem;
+}
+
+span.bold, code.bold {
+    font-weight: 600;
+}
+
+span.normal, code.normal {
+    font-weight: 400;
+}
+
+span.red, code.red {
+    color: var(--label-color-red);
+}
+
+span.yellow, code.yellow {
+    color: var(--label-color-yellow);
+}
+
+span.green, code.green {
+    color: var(--label-color-green);
+}
+
+code {
+    font-family: "Menlo", "Monaco",
+                 "Consolas",
+                 "Ubuntu Mono", "DejaVu Sans Mono", "Source Code Pro", "Noto Sans Mono",
+                 ui-monospace, monospace;
+    white-space: nowrap;
+    -webkit-user-select: inherit;
+    -ms-user-select: inherit;
+    user-select: inherit;
+}
+
+textarea.console {
+    font-family: "Menlo", "Monaco",
+                 "Consolas",
+                 "Ubuntu Mono", "DejaVu Sans Mono", "Source Code Pro", "Noto Sans Mono",
+                 ui-monospace, monospace;
+    font-size: 0.8rem;
+    background-color: inherit;
+    border: none;
+    color: white;
+    width: 100%;
+    height: 45vh;
+    overflow: hidden;
+    resize: none;
+    padding: 0;
+    -webkit-user-select: inherit;
+    -ms-user-select: inherit;
+    user-select: inherit;
+    text-indent: -1rem;
+}
+
+textarea::-webkit-scrollbar {
+    background-color: inherit;
+}
+
+textarea::-webkit-scrollbar-corner {
+    background-color: inherit;
+}
+
+canvas.chart {
+    width: 100%;
+    height: 100%;
+    height: min(20vh, 38vw, 260px);
+    overflow: hidden;
+}
+
+/* classes for any tags */
+.neumorphic {
+    border-radius: 0.8rem;
+    background: var(--std-color-winered);
+    box-shadow: 0.4rem 0.4rem 0.8rem #631739,
+                -0.4rem -0.4rem 0.8rem #871F4D;
+    padding: 0.8rem;
+    margin: 0.8rem 0rem;
+    min-height: min(14vh, 24vw);
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.neumorphic:active {
+    box-shadow: inset 0.4rem 0.4rem 0.8rem #631739,
+                inset -0.4rem -0.4rem 0.8rem #871F4D;
+}
+
+.neumorphic.inset {
+    box-shadow: inset 0.4rem 0.4rem 0.8rem #631739,
+                inset -0.4rem -0.4rem 0.8rem #871F4D;
+}
+
+.neumorphic.dense {
+    min-height: min(10vh, 18vw);/* min(10vh, 20vw, 120px); */
+}
+
+.neumorphic.sparse {
+    min-height: min(18vh, 32vw);/* min(18vh, 36vw, 240px); */
+}
+
+.neumorphic.double {
+    min-height: min(28vh, 50vw);/* min(28vh, 56vw, 360px); */
+}
+
+.neumorphic.triple {
+    min-height: min(42vh, 74vw);/* min(42vh, 84vw, 540px); */
+}
+
+.neumorphic.auto {
+    min-height: auto;
+}
+
+.logo {
+    vertical-align: middle;
+    height: 2.1rem;
+}
+
+.icon {
+    vertical-align: middle;
+    height: 3.1rem;
+}
+
+/*
+ * Copyright (C) 2023 Mono Wireless Inc. All Rights Reserved.
+ * Released under MW-OSSLA-1J,1E (MONO WIRELESS OPEN SOURCE SOFTWARE LICENSE AGREEMENT).
+ */

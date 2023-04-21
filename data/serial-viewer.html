@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>TWELITE SPOT Server | Serial Viewer</title>
+    <meta name="description" content="Viewer for serial data from App_Wings" />
+
+    <link rel="icon" href="./images/favicon.ico" />
+    <link rel="stylesheet" type="text/css" href="./css/flexboxgrid.min.css" >
+    <link rel="stylesheet" type="text/css" href="./css/style.css">
+
+    <script src="./js/serial-viewer.js" defer></script>
+
+  </head>
+  <body>
+    <div class="row start-xs top-xs">
+
+      <div class="col-xs-6 col-sm-6 col-md-5 col-lg-4">
+        <div class="neumorphic inset dense row center-xs middle-xs">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 npl npr">
+            <img src='./images/logo-lands.svg' class="logo">
+          </div>
+        </div>
+      </div>
+
+      <div class="col-xs-6 col-sm-6 col-md-7 col-lg-8">
+        <div class="neumorphic inset dense row center-xs middle-xs">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 npl npr">
+            <span class="medium bold">TWELITE SPOT</span>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 npl npr">
+            <span class="small bold">Serial Viewer</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="neumorphic inset auto row center-xs middle-xs">
+          <div class="col-xs-12 npr npl">
+            <textarea id="serial-console" class="console"
+                      cols="50" rows="25" spellcheck="false" wrap="hard"
+                      autocorrect="off" autocomplete="off" readonly></textarea>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-md-offset-6 col-lg-offset-6">
+        <div class="neumorphic inset row center-xs middle-xs">
+          <div class="col-xs-12 nwp npr npl">
+            <span class="medium bold">
+              Packet Type
+            </span>
+          </div>
+          <div class="col-xs-12">
+            <span class="medium">🔍</span>
+          </div>
+          <div class="col-xs-12 nwp npr npl">
+            <code class="medium"
+                  id="latest-type">Unknown</code>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </body>
+</html>
+
+<!--
+    Copyright (C) 2023 Mono Wireless Inc. All Rights Reserved.
+    Released under MW-OSSLA-1J,1E (MONO WIRELESS OPEN SOURCE SOFTWARE LICENSE AGREEMENT).
+  -->
