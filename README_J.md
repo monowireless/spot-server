@@ -20,11 +20,7 @@
 
 ESP32 を WiFI アクセスポイントとして、非同期のウェブサーバを起動します。
 
-TWELITE から受信したデータをウェブブラウザから閲覧できます。
-
-Set ESP32 as a WiFi access point running an asynchrounous web server.
-
-You can view data received via TWELITE on web browsers.
+TWELITE から受信したデータをウェブブラウザで閲覧できます。
 
 ## 使用方法
 
