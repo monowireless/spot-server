@@ -175,31 +175,27 @@ void setup() {
                   Serial.println("HTTP_GET: index.html");
                   request->send(LittleFS, "/index.html", "text/html");
               });
-    server.serveStatic("/", LittleFS, "/");
     server.on("/signal-viewer", HTTP_GET,
               [](AsyncWebServerRequest *request) {
                   Serial.println("HTTP_GET: signal-viewer.html");
                   request->send(LittleFS, "/signal-viewer.html", "text/html");
               });
-    server.serveStatic("/signal-viewer", LittleFS, "/signal-viewer");
     server.on("/cue-viewer", HTTP_GET,
               [](AsyncWebServerRequest *request) {
                   Serial.println("HTTP_GET: cue-viewer.html");
                   request->send(LittleFS, "/cue-viewer.html", "text/html");
               });
-    server.serveStatic("/cue-viewer", LittleFS, "/cue-viewer");
     server.on("/aria-viewer", HTTP_GET,
               [](AsyncWebServerRequest *request) {
                   Serial.println("HTTP_GET: aria-viewer.html");
                   request->send(LittleFS, "/aria-viewer.html", "text/html");
               });
-    server.serveStatic("/aria-viewer", LittleFS, "/aria-viewer");
     server.on("/serial-viewer", HTTP_GET,
               [](AsyncWebServerRequest *request) {
                   Serial.println("HTTP_GET: serial-viewer.html");
                   request->send(LittleFS, "/serial-viewer.html", "text/html");
               });
-    server.serveStatic("/serial-viewer", LittleFS, "/serial-viewer");
+    server.serveStatic("/", LittleFS, "/");
     server.addHandler(&events);
     server.begin();
     Serial.println("Started web server.");
