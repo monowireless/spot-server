@@ -2,10 +2,10 @@
 
 // Arduino / ESP libraries
 #include <Arduino.h>
-#include <WiFi.h>
 #include <Arduino_JSON.h>
-#include <LittleFS.h>
 #include <ESPmDNS.h>
+#include <LittleFS.h>
+#include <WiFi.h>
 #include <Wire.h>
 
 // Third-party libraries
@@ -35,7 +35,7 @@ const char* WIFI_PASSWORD = "twelitespot";
 const uint8_t WIFI_CH = 13;
 const IPAddress WIFI_IP = IPAddress(192, 168, 1, 1);
 const IPAddress WIFI_MASK = IPAddress(255, 255, 255, 0);
-const char* HOSTNAME = "spot";  // spot.local
+const char* HOSTNAME = "spot";    // spot.local
 
 // Global objects
 AsyncWebServer server(80);
@@ -65,7 +65,7 @@ void setup() {
     Twelite.on([](const ParsedAppTwelitePacket& packet) {
         Serial.println("Received a packet from App_Twelite");
         String jsonStr = createJsonFrom(packet);
-        if (not (jsonStr.length() <= 0)) {
+        if (not(jsonStr.length() <= 0)) {
             events.send(jsonStr.c_str(), "data_app_twelite", millis());
         }
         events.send("parsed_app_twelite", "data_parsing_result", millis());
@@ -76,7 +76,7 @@ void setup() {
         static uint32_t firstSourceSerialId = packet.u32SourceSerialId;
         if (packet.u32SourceSerialId == firstSourceSerialId) {
             String jsonStr = createJsonFrom(packet);
-            if (not (jsonStr.length() <= 0)) {
+            if (not(jsonStr.length() <= 0)) {
                 events.send(jsonStr.c_str(), "data_app_aria_twelite_aria_mode", millis());
             }
         }
@@ -88,7 +88,7 @@ void setup() {
         static uint32_t firstSourceSerialId = packet.u32SourceSerialId;
         if (packet.u32SourceSerialId == firstSourceSerialId) {
             String jsonStr = createJsonFrom(packet);
-            if (not (jsonStr.length() <= 0)) {
+            if (not(jsonStr.length() <= 0)) {
                 events.send(jsonStr.c_str(), "data_app_cue_twelite_cue_mode", millis());
             }
         }
@@ -127,7 +127,7 @@ void setup() {
     //// Any
     Twelite.on([](const BarePacket& packet) {
         String jsonStr = createJsonFrom(packet);
-        if (not (jsonStr.length() <= 0)) {
+        if (not(jsonStr.length() <= 0)) {
             events.send(jsonStr.c_str(), "data_bare_packet", millis());
         }
         events.send("unparsed_bare_packet", "data_parsing_result", millis());
@@ -144,54 +144,71 @@ void setup() {
 
     // Init Wi-Fi
     WiFi.mode(WIFI_AP);
-    char uidCString[8]; sprintf(uidCString, " (%02X)", createUidFromMac());
-    char ssidCString[20]; sprintf(ssidCString, "%s%s", WIFI_SSID_BASE, uidCString);
+    char uidCString[8];
+    sprintf(uidCString, " (%02X)", createUidFromMac());
+    char ssidCString[20];
+    sprintf(ssidCString, "%s%s", WIFI_SSID_BASE, uidCString);
     WiFi.softAP(ssidCString, WIFI_PASSWORD, WIFI_CH, false, 8);
-    delay(100);  // IMPORTANT: Waiting for SYSTEM_EVENT_AP_START
+    delay(100);    // IMPORTANT: Waiting for SYSTEM_EVENT_AP_START
     WiFi.softAPConfig(WIFI_IP, WIFI_IP, WIFI_MASK);
     MDNS.begin(HOSTNAME);
     Serial.print("Started Wi-Fi AP as \"");
-    Serial.print(ssidCString); Serial.print("\" at ");
-    Serial.print(WiFi.softAPIP().toString().c_str()); Serial.print(" (aka \"");
-    Serial.print(HOSTNAME); Serial.println(".local\").");
-    SeeedGrayOled.setTextXY(0, 0); SeeedGrayOled.putString("TWELITE SPOT");
-    SeeedGrayOled.setTextXY(1, 0); SeeedGrayOled.putString("AP Viewer");
-    SeeedGrayOled.setTextXY(3, 0); SeeedGrayOled.putString("SSID:");
-    SeeedGrayOled.setTextXY(4, 0); SeeedGrayOled.putString(WIFI_SSID_BASE);
-    SeeedGrayOled.setTextXY(5, 0); SeeedGrayOled.putString(uidCString);
-    SeeedGrayOled.setTextXY(6, 0); SeeedGrayOled.putString("Password:");
-    SeeedGrayOled.setTextXY(7, 0); SeeedGrayOled.putString(WIFI_PASSWORD);
-    SeeedGrayOled.setTextXY(8, 0); SeeedGrayOled.putString("IP Address:");
-    SeeedGrayOled.setTextXY(9, 0); SeeedGrayOled.putString(WiFi.softAPIP().toString().c_str());
-    SeeedGrayOled.setTextXY(10, 0); SeeedGrayOled.putString("Hostname:");
-    SeeedGrayOled.setTextXY(11, 0); SeeedGrayOled.putString(HOSTNAME); SeeedGrayOled.putString(".local");
+    Serial.print(ssidCString);
+    Serial.print("\" at ");
+    Serial.print(WiFi.softAPIP().toString().c_str());
+    Serial.print(" (aka \"");
+    Serial.print(HOSTNAME);
+    Serial.println(".local\").");
+    SeeedGrayOled.setTextXY(0, 0);
+    SeeedGrayOled.putString("TWELITE SPOT");
+    SeeedGrayOled.setTextXY(1, 0);
+    SeeedGrayOled.putString("AP Viewer");
+    SeeedGrayOled.setTextXY(3, 0);
+    SeeedGrayOled.putString("SSID:");
+    SeeedGrayOled.setTextXY(4, 0);
+    SeeedGrayOled.putString(WIFI_SSID_BASE);
+    SeeedGrayOled.setTextXY(5, 0);
+    SeeedGrayOled.putString(uidCString);
+    SeeedGrayOled.setTextXY(6, 0);
+    SeeedGrayOled.putString("Password:");
+    SeeedGrayOled.setTextXY(7, 0);
+    SeeedGrayOled.putString(WIFI_PASSWORD);
+    SeeedGrayOled.setTextXY(8, 0);
+    SeeedGrayOled.putString("IP Address:");
+    SeeedGrayOled.setTextXY(9, 0);
+    SeeedGrayOled.putString(WiFi.softAPIP().toString().c_str());
+    SeeedGrayOled.setTextXY(10, 0);
+    SeeedGrayOled.putString("Hostname:");
+    SeeedGrayOled.setTextXY(11, 0);
+    SeeedGrayOled.putString(HOSTNAME);
+    SeeedGrayOled.putString(".local");
 
     // Init filesystem
     if (LittleFS.begin()) { Serial.println("Mounted file system."); }
 
     // Init web server
     server.on("/", HTTP_GET,
-              [](AsyncWebServerRequest *request) {
+              [](AsyncWebServerRequest* request) {
                   Serial.println("HTTP_GET: index.html");
                   request->send(LittleFS, "/index.html", "text/html");
               });
     server.on("/signal-viewer", HTTP_GET,
-              [](AsyncWebServerRequest *request) {
+              [](AsyncWebServerRequest* request) {
                   Serial.println("HTTP_GET: signal-viewer.html");
                   request->send(LittleFS, "/signal-viewer.html", "text/html");
               });
     server.on("/cue-viewer", HTTP_GET,
-              [](AsyncWebServerRequest *request) {
+              [](AsyncWebServerRequest* request) {
                   Serial.println("HTTP_GET: cue-viewer.html");
                   request->send(LittleFS, "/cue-viewer.html", "text/html");
               });
     server.on("/aria-viewer", HTTP_GET,
-              [](AsyncWebServerRequest *request) {
+              [](AsyncWebServerRequest* request) {
                   Serial.println("HTTP_GET: aria-viewer.html");
                   request->send(LittleFS, "/aria-viewer.html", "text/html");
               });
     server.on("/serial-viewer", HTTP_GET,
-              [](AsyncWebServerRequest *request) {
+              [](AsyncWebServerRequest* request) {
                   Serial.println("HTTP_GET: serial-viewer.html");
                   request->send(LittleFS, "/serial-viewer.html", "text/html");
               });
@@ -275,15 +292,50 @@ String createJsonFrom(const ParsedAppCuePacket& packet) {
     if (packet.bHasAccelEvent) {
         jsonData["event_factor"] = "Accel";
         switch (packet.u8AccelEvent) {
-        case 0x01: { Serial.println("Dice1"); jsonData["event_desc"] = "Dice1"; break; }
-        case 0x02: { Serial.println("Dice2"); jsonData["event_desc"] = "Dice2"; break; }
-        case 0x03: { Serial.println("Dice3"); jsonData["event_desc"] = "Dice3"; break; }
-        case 0x04: { Serial.println("Dice4"); jsonData["event_desc"] = "Dice4"; break; }
-        case 0x05: { Serial.println("Dice5"); jsonData["event_desc"] = "Dice5"; break; }
-        case 0x06: { Serial.println("Dice6"); jsonData["event_desc"] = "Dice6"; break; }
-        case 0x08: { Serial.println("Shake"); jsonData["event_desc"] = "Shake"; break; }
-        case 0x10: { Serial.println("Move"); jsonData["event_desc"] = "Move"; break; }
-        default: { jsonData["event_desc"] = "Unknown"; break; }
+        case 0x01: {
+            Serial.println("Dice1");
+            jsonData["event_desc"] = "Dice1";
+            break;
+        }
+        case 0x02: {
+            Serial.println("Dice2");
+            jsonData["event_desc"] = "Dice2";
+            break;
+        }
+        case 0x03: {
+            Serial.println("Dice3");
+            jsonData["event_desc"] = "Dice3";
+            break;
+        }
+        case 0x04: {
+            Serial.println("Dice4");
+            jsonData["event_desc"] = "Dice4";
+            break;
+        }
+        case 0x05: {
+            Serial.println("Dice5");
+            jsonData["event_desc"] = "Dice5";
+            break;
+        }
+        case 0x06: {
+            Serial.println("Dice6");
+            jsonData["event_desc"] = "Dice6";
+            break;
+        }
+        case 0x08: {
+            Serial.println("Shake");
+            jsonData["event_desc"] = "Shake";
+            break;
+        }
+        case 0x10: {
+            Serial.println("Move");
+            jsonData["event_desc"] = "Move";
+            break;
+        }
+        default: {
+            jsonData["event_desc"] = "Unknown";
+            break;
+        }
         }
     } else {
         jsonData["event_factor"] = "Unknown";
