@@ -43,13 +43,13 @@ TWELITE から受信したデータをウェブブラウザで閲覧できます
 
 - 環境
   - [Arduino IDE](https://github.com/arduino/Arduino) (1.x)
-  - [ESP32 Arduino core](https://github.com/espressif/arduino-esp32) (>= 2.0.5)
+  - [ESP32 Arduino core](https://github.com/espressif/arduino-esp32) (>= 3.0.5)
   - [lorol's esp32-fs-plugin](https://github.com/lorol/arduino-esp32fs-plugin) (>= 2.0.7)
 - ライブラリ
-  - [MWings](https://github.com/monowireless/mwings_arduino) (>= 1.0.0)
+  - [MWings](https://github.com/monowireless/mwings_arduino) (>= 1.2.1)
   - [Arduino_JSON](http://github.com/arduino-libraries/Arduino_JSON) (>= 0.2.0)
-  - [AsyncTCP](https://github.com/me-no-dev/AsyncTCP) (>= 1.1.1)
-  - [ESPAsyncWebServer](https://github.com/me-no-dev/ESPAsyncWebServer) (>= 1.2.3)
+  - [AsyncTCP](https://github.com/me-no-dev/AsyncTCP) (>= 1.1.4)
+  - [ESPAsyncWebServer](https://github.com/me-no-dev/ESPAsyncWebServer) (>= 1.2.4)
   - [オプション] [OLED Display 96x96](https://github.com/Seeed-Studio/OLED_Display_96X96) (>= 1.0.0)
 
 #### クライアント側 (HTML/ECMAScript/CSS)
@@ -90,6 +90,6 @@ TWELITE から受信したデータをウェブブラウザで閲覧できます
 ## ライセンス
 
 ``` plain
-Copyright (C) 2023 Mono Wireless Inc. All Rights Reserved.
+Copyright (C) 2023-2024 Mono Wireless Inc. All Rights Reserved.
 Released under MW-OSSLA-1J,1E (MONO WIRELESS OPEN SOURCE SOFTWARE LICENSE AGREEMENT).
 ```

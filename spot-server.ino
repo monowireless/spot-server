@@ -6,6 +6,7 @@
 #include <ESPmDNS.h>
 #include <LittleFS.h>
 #include <WiFi.h>
+#include "esp_wifi.h"
 #include <Wire.h>
 
 // Third-party libraries
@@ -30,6 +31,13 @@ const uint8_t TWE_RETRY = 2;
 const uint8_t TWE_POWER = 3;
 
 // Wi-Fi defs
+wifi_country_t WIFI_COUNTRY_JP = {
+  cc: "JP",         // Contry code
+  schan: 1,         // Starting channel
+  nchan: 14,        // Number of channels
+  max_tx_power: 20, // Maximum power in dBm
+  policy: WIFI_COUNTRY_POLICY_MANUAL
+};
 const char* WIFI_SSID_BASE = "TWELITE SPOT";
 const char* WIFI_PASSWORD = "twelitespot";
 const uint8_t WIFI_CH = 13;
@@ -144,11 +152,14 @@ void setup() {
 
     // Init Wi-Fi
     WiFi.mode(WIFI_AP);
+    esp_wifi_set_country(&WIFI_COUNTRY_JP);
     char uidCString[8];
     sprintf(uidCString, " (%02X)", createUidFromMac());
     char ssidCString[20];
     sprintf(ssidCString, "%s%s", WIFI_SSID_BASE, uidCString);
-    WiFi.softAP(ssidCString, WIFI_PASSWORD, WIFI_CH, false, 8);
+    if (not WiFi.softAP(ssidCString, WIFI_PASSWORD, WIFI_CH, false, 10)) {
+      Serial.println("Failed to start AP");
+    }
     delay(100);    // IMPORTANT: Waiting for SYSTEM_EVENT_AP_START
     WiFi.softAPConfig(WIFI_IP, WIFI_IP, WIFI_MASK);
     MDNS.begin(HOSTNAME);
@@ -366,6 +377,6 @@ String createJsonFrom(const BarePacket& packet) {
 }
 
 /*
- * Copyright (C) 2023 Mono Wireless Inc. All Rights Reserved.
+ * Copyright (C) 2023-2024 Mono Wireless Inc. All Rights Reserved.
  * Released under MW-OSSLA-1J,1E (MONO WIRELESS OPEN SOURCE SOFTWARE LICENSE AGREEMENT).
  */
