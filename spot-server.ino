@@ -142,6 +142,7 @@ void setup() {
     });
 
     // Init OLED display
+    esp_log_level_set("i2c.master", ESP_LOG_NONE);
     Wire.begin();
     SeeedGrayOled.init(SSD1327);
     SeeedGrayOled.setNormalDisplay();
